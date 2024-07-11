@@ -2,26 +2,30 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
+    const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = async (event) => {
         event.preventDefault();
 
         try {
-            const response = await axios.post('https://yourapi.com/login', {
-                email,
+            const response = await axios.post('https://localhost:7205/api/UserAuth/Login', {
+                userName,
                 password
             });
 
-            if (response.data.success) {
-                // Handle successful login, e.g., save token, redirect, etc.
-                console.log('Login successful:', response.data);
+            if (response.data.isSuccess) {
+                // Store the token in localStorage
+                localStorage.setItem('token', response.data.result.token);
+                // Redirect to the dashboard
+                navigate('/dashboard');
             } else {
-                setError('Invalid email or password');
+                setError('Invalid username or password');
             }
         } catch (err) {
             setError('An error occurred. Please try again.');
@@ -34,11 +38,11 @@ const Login = () => {
                 <h2>Login</h2>
                 {error && <p className="error">{error}</p>}
                 <div className="form-group">
-                    <label>Email</label>
+                    <label>Username</label>
                     <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        type="text"
+                        value={userName}
+                        onChange={(e) => setUserName(e.target.value)}
                         required
                     />
                 </div>

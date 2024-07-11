@@ -56,7 +56,7 @@ const DashBoard = () => {
                             <input type="checkbox" id="fantasy" name="fantasy" value="fantasy" />
                             <label htmlFor="fantasy">Fantasy</label><br />
                         </div>
-                        {/* <div className="sidebar-groups">
+                        <div className="sidebar-groups">
                             <h3 className="sg-title">Language</h3>
                             <input type="checkbox" id="english" name="english" value="english" />
                             <label htmlFor="english">English</label><br />
@@ -65,7 +65,7 @@ const DashBoard = () => {
                             <input type="checkbox" id="hindi" name="hindi" value="hindi" />
                             <label htmlFor="hindi">Hindi</label><br />
                         </div>
-                        <div className="sidebar-groups">
+                        {/* <div className="sidebar-groups">
                             <h3 className="sg-title">Time</h3>
                             <input type="radio" id="morning" name="time" value="morning" />
                             <label htmlFor="morning">Morning</label><br />
